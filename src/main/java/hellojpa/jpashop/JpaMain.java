@@ -1,6 +1,6 @@
-package hellojpa;
+package hellojpa.jpashop;
 
-import com.example.ex1hellojpa.hellojpa.Member;
+import hellojpa.jpashop.domain.Member;
 import jakarta.persistence.*;
 
 public class JpaMain {
@@ -14,14 +14,6 @@ public class JpaMain {
 
 
         try {
-            Member member = new Member();
-            member.setId(101L);
-            member.setName("check2");
-            em.persist(member);
-
-            em.flush();
-            System.out.println("===============================");
-
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
