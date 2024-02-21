@@ -1,9 +1,11 @@
 package hellojpa.jpashop.domain;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -26,7 +28,7 @@ public class Order {
   @Column(name = "ORDER_ID")
   private Long id;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name="MEMBER_ID")
   private Member member;
   private LocalDateTime orderDate;
@@ -34,11 +36,11 @@ public class Order {
   @Enumerated(EnumType.STRING)
   private OrderStatus status;
 
-  @OneToOne
+  @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
   @JoinColumn(name = "DELIVERY_ID")
   private Delivery delivery;
 
-  @OneToMany(mappedBy = "order")
+  @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
   private List<OrderItem> orderItems = new ArrayList<>();
 
 

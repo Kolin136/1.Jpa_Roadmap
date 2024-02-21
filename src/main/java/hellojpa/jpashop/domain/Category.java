@@ -1,7 +1,10 @@
 package hellojpa.jpashop.domain;
 
+import static jakarta.persistence.FetchType.*;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,7 +26,7 @@ public class Category {
 
   private String name;
 
-  @ManyToOne
+  @ManyToOne(fetch = LAZY)
   @JoinColumn(name = "PARENT_ID")
   private Category parent;
 
@@ -36,4 +39,7 @@ public class Category {
         inverseJoinColumns = @JoinColumn(name="ITEM_ID")
   )
   private List<Item> items = new ArrayList<>();
+
+  public Category() {
+  }
 }
