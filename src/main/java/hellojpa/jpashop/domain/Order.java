@@ -2,6 +2,7 @@ package hellojpa.jpashop.domain;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -27,6 +28,13 @@ public class Order {
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "ORDER_ID")
   private Long id;
+  private int orderAmount;
+  @Embedded
+  private Adress adress;
+  @ManyToOne
+  @JoinColumn(name="PRODUCT_ID")
+  private Product product;
+
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name="MEMBER_ID")

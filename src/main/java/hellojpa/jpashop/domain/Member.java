@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import java.util.ArrayList;
@@ -18,54 +19,34 @@ public class Member {
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "MEMBER_ID")
   private Long id;
-  private String name;
-  private String city;
-  private String steet;
-  private String zipcode;
+  private String username;
+  private int age;
 
-
-  @OneToMany(mappedBy = "member")
-  private List<Order> orders = new ArrayList<>();
-
-
-
-  public Long getId() {
-    return id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public String getCity() {
-    return city;
-  }
-
-  public String getSteet() {
-    return steet;
-  }
-
-  public String getZipcode() {
-    return zipcode;
-  }
+  @ManyToOne
+  @JoinColumn(name = "TEAM_ID")
+  private Team team;
 
   public void setId(Long id) {
     this.id = id;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
-  public void setCity(String city) {
-    this.city = city;
+  public void setAge(int age) {
+    this.age = age;
   }
 
-  public void setSteet(String steet) {
-    this.steet = steet;
+  public Long getId() {
+    return id;
   }
 
-  public void setZipcode(String zipcode) {
-    this.zipcode = zipcode;
+  public String getUsername() {
+    return username;
+  }
+
+  public int getAge() {
+    return age;
   }
 }

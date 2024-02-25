@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import java.util.Objects;
 
 @Entity
 public class Delivery {
@@ -24,5 +25,6 @@ public class Delivery {
 
   @OneToOne(mappedBy = "delivery",fetch = FetchType.LAZY)
   private Order order;
+
 
 }
