@@ -44,15 +44,13 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-            String query = "select m from Member m join m.team t";
-            List<Member> result = em.createQuery(query, Member.class)
+            List<Member> resultList = em.createNamedQuery("Member.findByUsername", Member.class)
+                .setParameter("username", "회원1")
                 .getResultList();
-
-            for (Member i : result) {
-                System.out.println("체크"+i.getTeam());
-                System.out.println("이름 = " + i.getUsername() + ", 팀 = "+ i.getTeam().getName());
+            for (Member member : resultList) {
+                System.out.println("member = " + member);
             }
-
+            
             tx.commit();
         } catch (Exception e) {
             tx.rollback();

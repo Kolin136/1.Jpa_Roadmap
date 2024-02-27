@@ -8,12 +8,17 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@NamedQuery(
+    name ="Member.findByUsername",
+    query = "select m from Member as m where m.username = :username"
+)
 public class Member {
 
   @Id
@@ -62,5 +67,14 @@ public class Member {
 
   public int getAge() {
     return age;
+  }
+
+  @Override
+  public String toString() {
+    return "Member{" +
+        "id=" + id +
+        ", username='" + username + '\'' +
+        ", age=" + age +
+        '}';
   }
 }
