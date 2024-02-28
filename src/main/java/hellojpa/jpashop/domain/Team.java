@@ -43,4 +43,12 @@ public class Team {
   public String getName() {
     return name;
   }
+
+  @Override
+  public String toString() {
+    return "Team{" +
+        "id=" + id +
+        ", name='" + name + '\'' +
+        '}';
+  }
 }
